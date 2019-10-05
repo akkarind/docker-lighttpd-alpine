@@ -1,9 +1,10 @@
-FROM alpine:latest
+FROM alpine:edge
 LABEL maintainer="AkkarinD <carsten.vollmert@web.de>"
 
 ENV TIME_ZONE "Europe/Berlin"
 ENV CERT_FILE "cert.pem"
 ENV PRIV_FILE "privkey.pem"
+ENV CHAIN_FILE "chain.pem"
 
 # Install packages
 RUN	apk --update add --no-cache \
