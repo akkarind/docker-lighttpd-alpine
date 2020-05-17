@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.11
 LABEL maintainer="AkkarinD <carsten.vollmert@web.de>"
 
 ENV TIME_ZONE "Europe/Berlin"
@@ -23,9 +23,13 @@ RUN chmod 0755 /usr/local/bin/start-lighttpd.sh \
 	&& rm -rf /etc/lighttpd \
 	&& ln -s /config/lighttpd/ /etc/lighttpd \
 	&& chown -R lighttpd:lighttpd /var/www/localhost
-	
+
 # Expose http(s) ports
 EXPOSE 80 443
+
+# Define container health check; check every minute and wait 1 sec for http response
+HEALTHCHECK --interval=1m --timeout=1s \
+    CMD curl -f http://localhost/ || exit 1
 
 VOLUME 	["/usr/local/share/certdata","/config","/var/www/localhost/htdocs"]
 CMD ["start-lighttpd.sh"]
