@@ -27,11 +27,6 @@ then
     fi
 fi
 
-#PREPARE THE PERMISSIONS FOR VOLUMES
-mkdir -p /config
-chown -R root:root /config
-chmod -R 755 /config
-
 #LAUNCH THE INIT PROCESS
 tail -F /var/log/lighttpd/access.log 2>/dev/null &
 tail -F /var/log/lighttpd/error.log 2>/dev/null 1>&2 &
