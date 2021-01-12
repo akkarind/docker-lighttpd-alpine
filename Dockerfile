@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.12
 LABEL maintainer="AkkarinD <carsten.vollmert@web.de>"
 
 ENV TIME_ZONE "Europe/Berlin"
